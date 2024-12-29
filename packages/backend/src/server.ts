@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
+import ducksRouter from './routes/ducks';
 
 const app = express();
 const port = 3000;
@@ -17,9 +18,9 @@ mongoose.connect(MONGODB_URI)
     console.error('MongoDB connection error:', error);
   });
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello from the TypeScript backend!');
-});
+// Routes
+app.use('/ducks', ducksRouter);
+
 
 app.listen(port, () => {
   console.log(`Backend server listening at http://localhost:${port}`);
