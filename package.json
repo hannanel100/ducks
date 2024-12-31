@@ -2,14 +2,15 @@
   "name": "my-monorepo",
   "private": true,
   "scripts": {
-    "start:backend": "npm run start --workspace=@my-monorepo/backend",
-    "dev:backend": "npm run dev --workspace=@my-monorepo/backend",
-    "build:backend": "npm run build --workspace=@my-monorepo/backend",
-    "start:frontend": "npm run start --workspace=@my-monorepo/frontend",
+    "start:backend": "npm run start --workspace=backend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "build:backend": "npm run build --workspace=backend",
+    "start:frontend": "npm run start --workspace=frontend",
     "start": "npm run build:backend && npm run start:backend & npm run start:frontend",
     "dev": "npm run dev:backend & npm run start:frontend"
   },
   "workspaces": [
-    "packages/*"
+    "packages/backend",
+    "packages/frontend"
   ]
 }

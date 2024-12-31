@@ -1,5 +1,5 @@
 {
-  "name": "@my-monorepo/backend",
+  "name": "backend",
   "version": "1.0.0",
   "description": "",
   "main": "dist/server.js",
@@ -13,12 +13,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/server": "^4.9.5",
+    "axios": "^1.6.2",
     "express": "^4.21.2",
+    "graphql": "^16.8.1",
     "mongoose": "^8.9.2"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
-    "@types/express": "^5.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   }
