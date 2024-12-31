@@ -5,9 +5,9 @@
     "start:backend": "npm run start --workspace=backend",
     "dev:backend": "npm run dev --workspace=backend",
     "build:backend": "npm run build --workspace=backend",
-    "start:frontend": "npm run start --workspace=frontend",
+    "dev:frontend": "npm run dev --workspace=frontend",
     "start": "npm run build:backend && npm run start:backend & npm run start:frontend",
-    "dev": "npm run dev:backend & npm run start:frontend"
+    "dev": "npm run dev:backend && npm run start:frontend"
   },
   "workspaces": [
     "packages/backend",
