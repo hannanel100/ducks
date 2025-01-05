@@ -1,0 +1,32 @@
+.add-duck-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.add-duck-form div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-duck-form input {
+  padding: 0.5rem;
+  width: 200px;
+}
+
+.add-duck-form button {
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-duck-form button:hover {
+  background-color: #45a049;
+}

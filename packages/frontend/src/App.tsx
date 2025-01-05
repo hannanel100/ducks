@@ -1,24 +1,31 @@
-//create a standard app.tsx file
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
-import { store } from "./store";
-import { Duck } from "./redux/duckActions";
+import { Duck, getDucks } from "./redux/duckActions";
+import { AddDuckForm } from "./components/AddDuckForm";
+
+interface RootState {
+  ducks: Duck[];
+}
 
 const App: FC = () => {
-  const [ducks, setDucks] = useState<Duck[]>([]);
-  //getDucks on initial load
+  const dispatch = useDispatch();
+  const ducks = useSelector((state: RootState) => state.ducks);
+
   useEffect(() => {
-    setDucks(store.getState().ducks);
-  }, []);
+    dispatch(getDucks([])); // You might want to fetch ducks from an API here
+  }, [dispatch]);
+
   return (
     <div className="App">
       {ducks.map((duck) => (
         <div key={duck.id}>
-          <p>{duck.color}</p>
-          <p>{duck.age}</p>
-          <p>{duck.location.coordinates}</p>
+          <p>Color: {duck.color}</p>
+          <p>Age: {duck.age}</p>
+          <p>Location: {duck.location.coordinates.join(", ")}</p>
         </div>
       ))}
+      <AddDuckForm />
     </div>
   );
 };
