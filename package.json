@@ -1,16 +1,24 @@
 {
-  "name": "my-monorepo",
+  "name": "ducks",
   "private": true,
   "scripts": {
     "start:backend": "npm run start --workspace=backend",
     "dev:backend": "npm run dev --workspace=backend",
     "build:backend": "npm run build --workspace=backend",
-    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:frontend": "npm run dev --workspace=@ducks/frontend",
+    "start:graphql": "npm run start --workspace=graphql",
+    "dev:graphql": "npm run dev --workspace=graphql",
     "start": "npm run build:backend && npm run start:backend & npm run start:frontend",
-    "dev": "npm run dev:backend && npm run start:frontend"
+    "dev": "npm run dev:backend && npm run start:frontend",
+    "build": "tsc --build --verbose tsconfig.build.json"
   },
   "workspaces": [
     "packages/backend",
-    "packages/frontend"
-  ]
+    "packages/frontend",
+    "packages/graphql",
+    "packages/shared"
+  ],
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }

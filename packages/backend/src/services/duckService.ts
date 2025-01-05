@@ -1,4 +1,4 @@
-import { Duck } from '../models/Duck';
+import { Duck } from "../models/Duck";
 
 export class DuckService {
   async createDuck(duckData: any) {

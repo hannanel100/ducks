@@ -1,42 +1,37 @@
-import express, { Request, Response } from 'express';
-import mongoose from 'mongoose';
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
-import { typeDefs } from './graphql/schema';
-import { resolvers } from './graphql/resolvers';
-import ducksRouter from './routes/ducks';
+import express, { Request, Response } from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import ducksRouter from "./routes/ducks";
+import logger from "./utils/logger";
+import { requestLogger } from "./middleware/requestLogger";
 
 const app = express();
 const port = 3000;
-const MONGODB_URI = 'mongodb://root:example@localhost:27017/ducks?authSource=admin';
+const MONGODB_URI =
+  "mongodb://root:example@localhost:27017/ducks?authSource=admin";
 
+const corsOptions = {
+  origin: "http://localhost:5173",
+};
 async function startServer() {
-  const apolloServer = new ApolloServer({
-    typeDefs,
-    resolvers,
-  });
-
-  await apolloServer.start();
+  app.use(cors());
 
   // Middleware
   app.use(express.json());
-  
-  // Apollo GraphQL middleware
-  app.use('/graphql', expressMiddleware(apolloServer));
+  app.use(requestLogger); // Add request logging middleware
 
   // REST Routes
-  app.use('/ducks', ducksRouter);
+  app.use("/ducks", ducksRouter);
 
   // MongoDB connection
   await mongoose.connect(MONGODB_URI);
-  console.log('Connected to MongoDB');
+  logger.info("Connected to MongoDB");
 
   app.listen(port, () => {
-    console.log(`Backend server listening at http://localhost:${port}`);
-    console.log(`GraphQL endpoint available at http://localhost:${port}/graphql`);
+    logger.info(`Backend server listening at http://localhost:${port}`);
   });
 }
 
 startServer().catch((error) => {
-  console.error('Error starting server:', error);
+  logger.error("Error starting server:", error);
 });

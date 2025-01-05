@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "packages/backend"
+    },
+    {
+      "path": "packages/frontend"
+    },
+    {
+      "path": "packages/graphql"
+    },
+    {
+      "path": "packages/shared"
+    }
+  ]
+}

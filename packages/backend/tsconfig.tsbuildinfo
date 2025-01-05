@@ -1,0 +1,1 @@
+{"root":["./src/server.ts","./src/controllers/duckcontroller.ts","./src/middleware/requestlogger.ts","./src/models/duck.ts","./src/routes/ducks.ts","./src/services/duckservice.ts","./src/utils/logger.ts"],"version":"5.7.2"}
